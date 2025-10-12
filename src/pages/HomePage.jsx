@@ -7,6 +7,7 @@ function HomePage() {
       <title>Ecommerce Project</title>
 
       <Header />
+
       <div className="home-page">
         <div className="products-grid">
           <div className="product-container">
