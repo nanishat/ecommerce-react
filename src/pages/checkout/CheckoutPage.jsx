@@ -1,4 +1,4 @@
-import CheckoutHeader from './CheckoutHeader';
+import CheckoutHeader from './CheckoutHeader'
 import './CheckoutPage.css'
 
 function CheckoutPage() {
