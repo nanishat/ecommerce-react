@@ -4,6 +4,8 @@ import './TrackingPage.css'
 function TrackingPage() {
   return (
     <>
+      <link rel="icon" type="image" href="/tracking-favicon.png" />
+
       <title>Tracking</title>
 
       <Header />
