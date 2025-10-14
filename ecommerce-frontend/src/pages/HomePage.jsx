@@ -1,15 +1,20 @@
-import axios from 'axios'
-import Header from '../components/Header'
-import assets from '../assets/assets'
-import products from '../data/products'
-import './HomePage.css'
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import Header from '../components/Header';
+import assets from '../assets/assets';
+import './HomePage.css';
 
 function HomePage() {
 
-  axios.get('http://localhost:3000/api/products')
-    .then((response) => {
-      console.log(response.data);
-    });
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/products')
+      .then((response) => {
+        setProducts(response.data);
+      });
+  }, []);
+
   return (
     <>
       <link rel="icon" type="image" href="/home-favicon.png" />
