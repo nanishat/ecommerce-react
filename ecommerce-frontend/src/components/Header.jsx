@@ -1,8 +1,8 @@
-import { NavLink } from 'react-router'
-import assets from '../assets/assets'
-import '../components/Header.css'
+import { NavLink } from 'react-router';
+import assets from '../assets/assets';
+import '../components/Header.css';
 
-function Header({cart}) {
+function Header({ cart }) {
 
   let totalQuantity = 0;
 

@@ -1,8 +1,13 @@
-import { Link } from 'react-router'
-import assets from '../../assets/assets'
-import './CheckoutHeader.css'
+import { Link } from 'react-router';
+import assets from '../../assets/assets';
+import './CheckoutHeader.css';
 
-function CheckoutHeader() {
+function CheckoutHeader({ cart }) {
+  let totalQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    totalQuantity += cartItem.quantity;
+  });
   return (
     <>
       <div className="checkout-header">
@@ -16,7 +21,7 @@ function CheckoutHeader() {
 
           <div className="checkout-header-middle-section">
             Checkout (<Link className="return-to-home-link"
-              to="/">3 items</Link>)
+              to="/">{totalQuantity} items</Link>)
           </div>
 
           <div className="checkout-header-right-section">
