@@ -26,6 +26,14 @@ function TrackingPage({ cart }) {
     return orderProduct.productId === productId;
   })
 
+  const totalDelivaryTimeMs = orderProduct.estimatedDeliveryTimeMs - order.orderTimeMs;
+  const timePassedMs = dayjs().valueOf() - order.orderTimeMs;
+
+  let delivaryPercent = (timePassedMs / totalDelivaryTimeMs) * 100;
+  if (delivaryPercent > 100) {
+    delivaryPercent = 100;
+  }
+
   return (
     <>
       <link rel="icon" type="image" href="/tracking-favicon.png" />
@@ -67,7 +75,7 @@ function TrackingPage({ cart }) {
           </div>
 
           <div className="progress-bar-container">
-            <div className="progress-bar"></div>
+            <div className="progress-bar" style={{ width: `${delivaryPercent}` }}></div>
           </div>
         </div>
       </div>
