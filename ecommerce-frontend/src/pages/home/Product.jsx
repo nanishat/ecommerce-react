@@ -7,12 +7,12 @@ function Product({ product, loadCart }) {
 
   const [quantity, setQuantity] = useState(1);
 
-  const addToCart = () => {
-    axios.post('/api/cart-items', {
+  const addToCart = async () => {
+    await axios.post('/api/cart-items', {
       productId: product.id,
       quantity
     })
-    loadCart();
+    await loadCart();
   }
 
   const selectQuantity = (event) => {
