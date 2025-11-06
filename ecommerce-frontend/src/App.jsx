@@ -8,6 +8,9 @@ import OrdersPage from './pages/orders/OrdersPage';
 import TrackingPage from './pages/TrackingPage';
 import NotFoundPage from './pages/NotFoundPage';
 
+window.axios = axios;
+// use it in the console -> axios.post('/api/reset')
+
 function App() {
   const [cart, setCart] = useState([]);
 
