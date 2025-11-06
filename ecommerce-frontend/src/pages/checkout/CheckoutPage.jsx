@@ -13,15 +13,19 @@ function CheckoutPage({ cart, loadCart }) {
   const [paymentSummary, setPaymentSummery] = useState(null);
 
   useEffect(() => {
-    const fetchCheckoutData = async () => {
-      let response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
+    const getDeliveryOptions = async () => {
+      const response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
       setDeliveryOptions(response.data);
+    }
+    getDeliveryOptions();
+  }, []);
 
-      response = await axios.get('/api/payment-summary');
+  useEffect(() => {
+    const getPaymentSummary = async () => {
+      const response = await axios.get('/api/payment-summary');
       setPaymentSummery(response.data);
     }
-
-    fetchCheckoutData();
+    getPaymentSummary();
   }, [cart]);
 
   return (
