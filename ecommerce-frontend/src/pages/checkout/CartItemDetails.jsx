@@ -5,12 +5,30 @@ import formatCurrency from "../../utils/formatCurrency";
 function CartItemDetails({ cartItem, loadCart }) {
 
   const [isUpdatingQuantity, setIsUpdatingQuantity] = useState(false);
+  const [quantity, setQuantity] = useState(cartItem.quantity);
 
-  const updateQuantity = () => {
+  const updateQuantity = async () => {
     if (isUpdatingQuantity) {
+      await axios.put(`/api/cart-items/${cartItem.productId}`, {
+        quantity: Number(quantity)
+      });
+      await loadCart();
       setIsUpdatingQuantity(false);
     } else {
       setIsUpdatingQuantity(true);
+    }
+  }
+
+  const updateQuantityInput = (event) => {
+    setQuantity(event.target.value);
+  }
+
+  const handleQuantityKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      updateQuantity();
+    } else if (event.key === 'Escape') {
+      setQuantity(cartItem.quantity);
+      setIsUpdatingQuantity(false);
     }
   }
 
@@ -35,7 +53,8 @@ function CartItemDetails({ cartItem, loadCart }) {
           <span>
             Quantity:
             {isUpdatingQuantity
-              ? <input type="text" className='update-quantity' />
+              ? <input type="text" className='update-quantity'
+                value={quantity} onChange={updateQuantityInput} onKeyDown={handleQuantityKeyDown} />
               : <span className="quantity-label">{cartItem.quantity}</span>
             }
           </span>
