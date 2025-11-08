@@ -1,11 +1,16 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate, useSearchParams } from 'react-router';
 import assets from '../assets/assets';
 import '../components/Header.css';
 
 function Header({ cart }) {
 
-  const [search, setSearch] = useState('');
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  // searchText instead of search, since, search is already being used below
+  const searchText = searchParams.get('search');
+
+  const [search, setSearch] = useState(searchText || '');
 
   let totalQuantity = 0;
 
@@ -18,7 +23,7 @@ function Header({ cart }) {
   }
 
   const searchProduct = () => {
-    console.log(search);
+    navigate(`/?search=${search}`);
   }
 
   return (
